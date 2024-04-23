@@ -180,7 +180,7 @@ int insertLast(headNode* h, int key) {
     }
 	listNode* node = (listNode*)malloc(sizeof(listNode));	// 추가할 노드
 	listNode* a = h->first;									// node를 가리킬 포인터
-	while(a -> link == NULL){								// a가 마지막 노드가 되면 종료
+	while(a -> link != NULL){								// a가 마지막 노드가 되면 종료
 		a = a -> link;
 	}
 	a -> link = node;										// a뒤에 node변수 추가
