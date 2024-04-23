@@ -180,12 +180,12 @@ int insertLast(headNode* h, int key) {
     }
 	listNode* node = (listNode*)malloc(sizeof(listNode));	// 추가할 노드
 	listNode* a = h->first;									// node를 가리킬 포인터
-	while(a -> link = NULL){								// a가 마지막 노드가 되면 종료
+	while(a -> link == NULL){								// a가 마지막 노드가 되면 종료
 		a = a -> link;
 	}
 	a -> link = node;										// a뒤에 node변수 추가
-	node -> key = key;
-	node -> link = NULL;
+	node -> key = key;										// 노드의 key 값 초기화
+	node -> link = NULL;									// 노드의 link 초기화
 	return 0;
 }
 
@@ -213,10 +213,13 @@ int deleteNode(headNode* h, int key) {
     }
 	listNode* a = h->first;					// node를 가리키는 포인터
 	listNode* back = NULL;					// key와 값이 같기전 포인터
+	int check = 0;
 	while (a->link != NULL && a->key != key){
 		back = a;
 		a = a->link;
+		if (a->key == key) check = 1;
 	}
+	if (check == 1) return 0; 				// Key 가 존재 안할 경우
 	if (back == NULL){						// back이 null 이면 첫번째 값이 a
 		h->first = a->link;
 		free(a);
