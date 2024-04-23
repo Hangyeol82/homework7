@@ -213,13 +213,13 @@ int deleteNode(headNode* h, int key) {
     }
 	listNode* a = h->first;					// node를 가리키는 포인터
 	listNode* back = NULL;					// key와 값이 같기전 포인터
-	int check = 0;
+	int check = 0;							
 	while (a->link != NULL && a->key != key){
 		if(a->key == key) check = 1;
 		back = a;
 		a = a->link;
 	}
-	if (check == 1) return 0; 				// Key 가 존재 안할 경우
+	if (check == 0) return 0; 				// Key 가 존재 안할 경우
 	if (back == NULL){						// back이 null 이면 첫번째 값이 a
 		h->first = a->link;
 		free(a);
